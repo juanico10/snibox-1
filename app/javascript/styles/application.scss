@@ -1,0 +1,225 @@
+// TODO: refactor this
+
+@import "snibox/variables";
+@import "snibox/vendor";
+@import "snibox/mixins";
+
+@import "snibox/components/card";
+@import "snibox/components/icon";
+@import "snibox/components/menu";
+@import "snibox/components/nav";
+@import "snibox/components/navbar";
+@import "snibox/components/vue/search_box";
+
+@import "snibox/utils/animate";
+@import "snibox/utils/codemirror";
+@import "snibox/utils/github_markdown_css";
+@import "snibox/utils/sweetalert2";
+
+html {
+  background: $app-background;
+}
+
+body {
+  &.dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+pre {
+  background: none;
+
+  code {
+    white-space: pre-wrap;
+  }
+}
+
+.flex-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  #show-snippet & {
+    width: calc(50% + 64px);
+  }
+}
+
+.with-text-overflow {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.menu-label {
+    margin-bottom: 0;
+  }
+}
+
+.shadow-light {
+  box-shadow: 0 0 1px 1px rgba($black, 0.1);
+}
+
+#app {
+  display: flex;
+  height: calc(100% - #{$navbar-height});
+}
+
+#snippets {
+  .menu-form {
+    margin-top: 0;
+  }
+}
+
+#page-wrapper {
+  display: none;
+  padding-top: 5px;
+}
+
+#snippet-file-form {
+  &.card {
+    border: 1px solid $border-color;
+    border-radius: $radius - 1;
+    margin-bottom: 1em;
+  }
+}
+
+.menu-top {
+  @extend .is-marginless;
+  background: $white;
+  padding: 0.65em 0.75em;
+}
+
+.content p:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.sidebar {
+  position: relative;
+  width: $sidebar-width;
+  z-index: 1;
+
+  .menu-content {
+    padding-bottom: 0.65em;
+  }
+
+  &.sidebar-snippets {
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+  }
+}
+
+.main {
+  position: relative;
+  width: calc(100% - #{$sidebar-width} * 2);
+}
+
+.sidebar,
+.main {
+  background: $white;
+  overflow: auto;
+  z-index: 1;
+}
+
+.form-footer {
+  bottom: 0;
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.level.is-mobile .level-item {
+  margin-right: 0;
+}
+
+.label-edit-wrapper {
+  margin-left: 0.35em;
+}
+
+.editor {
+  font-size: $code-size;
+  height: calc(100vh - 25rem);
+  min-height: 200px;
+  border: 1px solid $border-color;
+  width: 100%;
+  border-radius: $radius - 1;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.no-height {
+  height: auto;
+  min-height: 0;
+}
+
+.no-border {
+  border: 0;
+}
+
+// responsiveness
+@include scale($scale-desktop);
+
+@media (min-width: $widescreen) {
+  @include scale($scale-widescreen);
+}
+
+@media (min-width: $uhd) {
+  @include scale($scale-uhd);
+}
+
+// mobile
+@media screen and (max-width: $tablet) {
+  html,
+  body {
+    height: auto;
+  }
+
+  #app {
+    flex-direction: column;
+    height: auto;
+    padding: $section-padding;
+
+    &.ready {
+      border: none;
+    }
+  }
+
+  .menu-top {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: auto;
+    margin-bottom: 2em;
+
+    .menu-content {
+      padding-bottom: 0;
+      max-height: calc(300px - #{$menu-top-height});
+    }
+
+    &.sidebar-snippets {
+      border: none;
+    }
+  }
+
+  .main {
+    width: auto;
+
+    .card-content {
+      height: auto;
+    }
+  }
+
+  .main,
+  .sidebar {
+    .ready & {
+      box-shadow: $card-shadow;
+    }
+  }
+}

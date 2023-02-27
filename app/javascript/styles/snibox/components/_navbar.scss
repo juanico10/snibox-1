@@ -1,0 +1,42 @@
+$navbar-height: 50px;
+
+.navbar > .container {
+  min-height: initial;
+}
+
+#navbar {
+  display: none;
+  height: $navbar-height;
+}
+
+.navbar {
+  box-shadow: 0 0 4px $shadow-color;
+}
+
+.navbar-menu {
+  &.is-active {
+    background: $white;
+  }
+}
+
+.navbar-item {
+  &.is-active {
+    background: $navbar-item-hover-background-color !important;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .navbar {
+    .navbar-brand {
+      justify-content: space-between;
+    }
+
+    .navbar-burger {
+      margin-left: 0;
+    }
+
+    #navbar-menu {
+      box-shadow: 0 0 1px $shadow-color;
+    }
+  }
+}

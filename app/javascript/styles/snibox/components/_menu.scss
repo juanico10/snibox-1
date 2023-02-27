@@ -1,0 +1,22 @@
+$menu-top-height: 45px;
+
+.menu-list {
+  li {
+    a {
+      line-height: 23px;
+      padding: 0.3em 1em;
+      min-height: 32px;
+    }
+  }
+}
+
+.menu-top {
+  height: $menu-top-height;
+  margin: 1em 0.75em;
+  line-height: 26px;
+}
+
+.menu-form,
+.menu-text {
+  margin: 1em;
+}
